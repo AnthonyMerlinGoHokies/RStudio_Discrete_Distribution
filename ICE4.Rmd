@@ -1,0 +1,141 @@
+---
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+geometry: margin=1.5cm
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\begin{center}\LARGE{\textbf{ICE \#4: Discrete Distributions}}\end{center}
+
+
+**Instructions:** Complete all problems to the best of your abilities! **To receive a complete grade for this assignment, you must:**
+
+1. write out the probability statement (i.e., $P(X = \#)$, $P(X < \#)$, etc.) where you define our random variable. 
+2. write the parameter value 
+    * Binomial Distribution: $n$ (number of trials) and $\rho$ (probability of success)
+    * Poisson Distribution: $\lambda$ (average count in a specificed space)
+    * Geometric Distribution: $\rho$ (probability of success)
+    * Negative Binomial Distribution: $\rho$ (probability of success) and $r$ (number of fixed successes)
+3. the answer for problem (using R)
+
+*Reminder: In-Class Exercises are graded as Complete or Incomplete. To receive a complete grade, you MUST ANSWER EVERY QUESTION to the best of your ability. For instance, if you do not answer ONE QUESTION, you will receive an incomplete on this assignment. The purpose of this grading scale is to ensure you are attempting every problem and working to learn the material.*
+
+## Problem \#1: Binomial Distribution
+**In testing a certain kind of truck tire over rugged terrain, it is found that 25\% of the trucks do not to complete the test run because of a blowout. Of the next 15 trucks tested,**
+
+**a. Find the probability that 3 to 6 cars have blowouts.**
+
+$n$ = 15 
+and $\rho$ is equal to 0.25
+
+$$ P (3 \le x \le 6)$$
+
+```{r}
+pbinom(6,15,0.25) - pbinom(2,15,0.25)
+```
+
+
+**b. Find the probability that fewer than 4 cars have blowouts.**
+
+
+$n$ = 15 
+and $\rho$ is equal to 0.25
+
+$$ P ( X < 4) $$
+
+```{r}
+pbinom(3,15,0.25)
+```
+
+
+**c. Find the probability more than 5 cars have blowouts.**
+
+$~$
+
+$n$ = 15 
+and $\rho$ is equal to 0.25
+$$ P(X > 5) = 1 - P(X \le 5)$$ 
+
+```{r}
+1 - pbinom(5,15,0.25)
+```
+
+
+**d. Find the expected value and standard deviation.**
+
+$~$ The Expected Value of binomial random variable is E[X] =np; Thus E[X] = (15)(0.25) = 3.75
+
+Standard Deviation Value: The variance of binomal random varibales is V[X] = np(1-p); Thus V[X] = (15)(0.25)(1 - 0.25) = 2.812. Thus the standard devation is square root V[X] = 1.6777051
+
+
+
+
+$~$ \newpage 
+
+## Problem \#2: Poisson Distribution
+**On average, a textbook author makes two word-processing errors per page on the first draft of her textbook. **
+
+
+**a. What is the probability that on the next page she will make 4 or more errors?**
+
+$~$
+$\lambda$ = 2
+$$ P( y \ge 4) = 1 -P(Y\le 3)$$
+
+```{r}
+1 - ppois(3,2)
+```
+
+**b. What is the probability that on the next page she will make no errors?**
+
+$~$ 
+$\lambda$ = 2
+$$ P(Y=0)$$
+
+```{r}
+dpois(0,2)
+```
+
+**c. What is the expected value and standard deviation?**
+
+$~$ The Expected Value of Poisson random variable is E[X] = $\lambda$  this E[X] = 2 
+
+The Standard Deviation Value, the variance of a Poisson random variable is V[X] = $\lambda$ thus V[X] = 2 and square root V[X] = 1.4142 for our standard deviation 
+
+
+---
+
+$~$\newpage
+
+## Problem \#3: Geometric/Negative Binomial Distribution
+**The probability that a student pilot passes the written test for a private pilot’s license is 0.7.**
+
+
+**a. Find the probability that a given student will pass the test on the third try.**
+$\rho$ is equal to 0.7
+$$ P(X = 3)  $$
+```{r}
+dgeom(3-1, 0.7)
+```
+
+**b. Find the probability that a given student will pass the test before the fourth try.**
+
+$\rho$ is equal to 0.7
+$$ P(X < 4)  $$
+
+```{r}
+pgeom(2,0.7)
+```
+
+**c. Find the expected value and standard deviation.**
+
+$~$ The Expected Value of Geometric random variable is E[X] = 1/p; thus E[X] = 1.4285714
+
+The Standard Deviation Value, the variance of a geometric random variable is V[X] = 1-p/p^2 thus V[X] = 1-0.7 /(0.7)^ 2 = 0.6122  Thus the standard devation is square root V[X] = 0.7824
+
+
